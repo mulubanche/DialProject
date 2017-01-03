@@ -23,6 +23,7 @@
     [self.window makeKeyAndVisible];
     self.window.rootViewController = [RootTabBarController new];
     
+    //jiang chao du 
     
     return YES;
 }
