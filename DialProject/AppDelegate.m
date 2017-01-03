@@ -23,7 +23,8 @@
     [self.window makeKeyAndVisible];
     self.window.rootViewController = [RootTabBarController new];
     
-    //jiang chao du 
+    //jiang chao du
+    DebugLog(@"蒋朝都， 你好");
     
     return YES;
 }
