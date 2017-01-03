@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeController">
+            <connections>
+                <outlet property="item_view" destination="R5U-4v-Tbv" id="yZN-de-k5k"/>
+                <outlet property="top_view" destination="F44-4b-7sX" id="PC7-cX-CYU"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F44-4b-7sX">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="437"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="R5U-4v-Tbv">
+                    <rect key="frame" x="0.0" y="437" width="375" height="181"/>
+                    <color key="backgroundColor" red="0.92146831750000002" green="0.92162626979999995" blue="0.92145836349999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="181" id="bbL-zZ-POV"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jkI-qd-TbC">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" red="0.16862745100000001" green="0.79607843140000001" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="R5U-4v-Tbv" firstAttribute="top" secondItem="F44-4b-7sX" secondAttribute="bottom" id="9rX-po-b2D"/>
+                <constraint firstItem="F44-4b-7sX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Yyn-YU-sf5"/>
+                <constraint firstItem="R5U-4v-Tbv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gBF-Tf-a0u"/>
+                <constraint firstAttribute="trailing" secondItem="R5U-4v-Tbv" secondAttribute="trailing" id="lRR-mW-x9k"/>
+                <constraint firstAttribute="bottom" secondItem="R5U-4v-Tbv" secondAttribute="bottom" constant="49" id="r29-v9-gno"/>
+                <constraint firstAttribute="trailing" secondItem="F44-4b-7sX" secondAttribute="trailing" id="saX-3A-khB"/>
+                <constraint firstItem="F44-4b-7sX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wFy-7A-zlp"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
