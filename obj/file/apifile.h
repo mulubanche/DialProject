@@ -23,6 +23,7 @@
 
 #pragma mark ASMX
 #define COSSERVICE          @"CosService.asmx"
+#define COSS_CALL_BACK      @"CallBack"
 
 
 #pragma mark 存沙盒宏
