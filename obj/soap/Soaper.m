@@ -59,6 +59,8 @@ static NSString* _domain = @"http://tempuri.org/";
                             "xmlns:soap12=\"http://www.w3.org/2003/05/soap-envelope\">"
                                 "<soap12:Body>"
                                     "<%@ xmlns=\"%@\">"
+                                        "<call>"
+                                        "</call>"
                                     "</%@>"
                                 "</soap12:Body>"
                             "</soap12:Envelope>";
@@ -72,7 +74,8 @@ static NSString* _domain = @"http://tempuri.org/";
 - (void) addParam:(NSString*)key value:(NSString*)value
 {
     NSString* param = [NSString stringWithFormat:@"<%@>%@</%@>", key, value, key];
-    GDataXMLElement* methodTag = [[soapDom.rootElement nodesForXPath:[NSString stringWithFormat:@"//*[name()='%@']",method] error:nil] objectAtIndex:0];
+    //GDataXMLElement* methodTag = [[soapDom.rootElement nodesForXPath:[NSString stringWithFormat:@"//*[name()='%@']",method] error:nil] objectAtIndex:0];
+    GDataXMLElement* methodTag = [[soapDom.rootElement nodesForXPath:[NSString stringWithFormat:@"//*[name()='%@']",@"call"] error:nil] objectAtIndex:0];
     [methodTag addChild:[[GDataXMLElement alloc] initWithXMLString:param error:nil]];
 }
 
@@ -87,6 +90,7 @@ static NSString* _domain = @"http://tempuri.org/";
     [req addValue:[NSString stringWithFormat:@"%ld", (long)[soapDom.rootElement.XMLString length]] forHTTPHeaderField:@"Content-Length"];
     [req setURL:[NSURL URLWithString:url]];
     
+    //DebugLog(@"%@", soapDom.rootElement.XMLString);
     
     [NSURLConnection sendAsynchronousRequest:req queue:[NSOperationQueue mainQueue]
                    completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {

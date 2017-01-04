@@ -11,6 +11,8 @@
 #import "CarouselView.h"
 #import "CellTellNumber.h"
 
+#import "Soaper.h"
+
 @interface DialController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIView *call_view;
@@ -85,8 +87,25 @@
     }
 }
 - (IBAction)sureCallClick:(UIButton *)sender {
-    [ToolFile judgeSaveTellIsShow:true block:^(BOOL ret) {
-        
+    /*
+     properties.put("callerE164", SPUtils.getUserID(getActivity()));
+     properties.put("calleeE164s", phone);
+     properties.put("accessE164", "10081");
+     properties.put("accessE164Password", "891210");
+     */
+    WeakSelf
+    [ToolFile judgeSaveTellIsShow:true block:^() {
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        dic[@"callerE164"] = [KSUSERDEFAULT objectForKey:SAVE_SELF_TELL];
+        dic[@"calleeE164s"] = weakSelf.number;
+        dic[@"accessE164"] = @"10081";
+        dic[@"accessE164Password"] = @"891210";
+        [Soaper connectUrl:[NSString stringWithFormat:@"%@%@", CODE_URL, COSSERVICE] Method:COSS_CALL_BACK Param:dic Success:^(NSDictionary *rawDic, NSString *rawStr) {
+            DebugLog(@"%@", rawDic);
+        } Error:^(NSString *errMsg, NSString *rawStr) {
+            DebugLog(@"%@", errMsg);
+            //服务器无法为请求提供服务，因为不支持该媒体类型。
+        }];
     }];
 }
 

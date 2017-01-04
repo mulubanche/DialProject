@@ -66,7 +66,10 @@
         [self.scrollView autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:0];
         [self.scrollView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:0];
         
-        [self.pageControl autoSetDimensionsToSize:CGSizeMake(300, 10)];
+//        [self.pageControl autoSetDimensionsToSize:CGSizeMake(300, 10)];
+        [self.pageControl autoSetDimension:ALDimensionHeight toSize:10];
+        [self.pageControl autoPinEdgeToSuperviewEdge:ALEdgeLeft withInset:0];
+        [self.pageControl autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:0];
         [self.pageControl autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:5];
         
         self.showNumber = [UILabel newAutoLayoutView];

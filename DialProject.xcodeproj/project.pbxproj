@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC06746E1E1CA84900263104 /* InputTellView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC06746C1E1CA84900263104 /* InputTellView.m */; };
+		AC06746F1E1CA84900263104 /* InputTellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC06746D1E1CA84900263104 /* InputTellView.xib */; };
 		AC4A890E1E1B60B00090D66C /* state_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC4A890B1E1B60B00090D66C /* state_blue@2x.png */; };
 		AC4A890F1E1B60B00090D66C /* state_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC4A890C1E1B60B00090D66C /* state_green@2x.png */; };
 		AC4A89101E1B60B00090D66C /* state_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AC4A890D1E1B60B00090D66C /* state_red@2x.png */; };
@@ -127,6 +129,9 @@
 		5076A93B90B3715CDC0C8AA8 /* Pods_DialProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DialProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		51ABC410807C30C617DC0EEC /* Pods-DialProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DialProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-DialProject/Pods-DialProject.release.xcconfig"; sourceTree = "<group>"; };
 		81B48DB38363D83633B550F9 /* Pods-DialProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DialProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DialProject/Pods-DialProject.debug.xcconfig"; sourceTree = "<group>"; };
+		AC06746B1E1CA84900263104 /* InputTellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTellView.h; sourceTree = "<group>"; };
+		AC06746C1E1CA84900263104 /* InputTellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTellView.m; sourceTree = "<group>"; };
+		AC06746D1E1CA84900263104 /* InputTellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTellView.xib; sourceTree = "<group>"; };
 		AC4A890B1E1B60B00090D66C /* state_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "state_blue@2x.png"; sourceTree = "<group>"; };
 		AC4A890C1E1B60B00090D66C /* state_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "state_green@2x.png"; sourceTree = "<group>"; };
 		AC4A890D1E1B60B00090D66C /* state_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "state_red@2x.png"; sourceTree = "<group>"; };
@@ -521,6 +526,9 @@
 		AC91F8581E1651F700B693B6 /* publicview */ = {
 			isa = PBXGroup;
 			children = (
+				AC06746B1E1CA84900263104 /* InputTellView.h */,
+				AC06746C1E1CA84900263104 /* InputTellView.m */,
+				AC06746D1E1CA84900263104 /* InputTellView.xib */,
 				AC4A89161E1B76890090D66C /* FDAlertView.h */,
 				AC4A89171E1B76890090D66C /* FDAlertView.m */,
 				AC91F8591E16523000B693B6 /* CarouselView.h */,
@@ -772,6 +780,7 @@
 				AC91F8371E160A4A00B693B6 /* tell_num8_ic1.png in Resources */,
 				ACE2083A1E1BB1D500A7E024 /* icon_setting@2x.png in Resources */,
 				ACD819A91E1516BE0060379D /* Assets.xcassets in Resources */,
+				AC06746F1E1CA84900263104 /* InputTellView.xib in Resources */,
 				ACE208391E1BB1D500A7E024 /* icon_search@2x.png in Resources */,
 				AC91F82D1E160A4A00B693B6 /* tell_num3_ic1.png in Resources */,
 				AC91F82F1E160A4A00B693B6 /* tell_num4_ic1.png in Resources */,
@@ -889,6 +898,7 @@
 				ACD819A11E1516BE0060379D /* AppDelegate.m in Sources */,
 				ACE208291E1BAF5F00A7E024 /* CellHomeItem.m in Sources */,
 				AC91F7F61E1604F000B693B6 /* ContactController.m in Sources */,
+				AC06746E1E1CA84900263104 /* InputTellView.m in Sources */,
 				ACD8199E1E1516BE0060379D /* main.m in Sources */,
 				C63DDBBA1E17F6A5001AC3C2 /* ToolFile.m in Sources */,
 				C63DDBC31E180950001AC3C2 /* RecordModel.m in Sources */,
