@@ -8,8 +8,15 @@
 
 #import "AppDelegate.h"
 #import "RootTabBarController.h"
+#import <CoreTelephony/CTCall.h>
+#import <CoreTelephony/CTCallCenter.h>
 
 @interface AppDelegate ()
+
+@property (nonatomic) CTCallCenter *callCenter;
+@property (nonatomic,copy)NSString *startCallTime;
+@property (nonatomic,copy)NSString *beginTelTime;
+@property (nonatomic,copy)NSString *endCallTime;
 
 @end
 
@@ -27,9 +34,48 @@
 }
 
 
+-(void)detectCall {
+    
+    
+    //    NextViewController *next = [NextViewController new];
+    
+    WeakSelf;
+    
+    self.callCenter = [[CTCallCenter alloc] init];
+    self.callCenter.callEventHandler=^(CTCall* call) {
+        if (call.callState == CTCallStateDisconnected) {
+            weakSelf.endCallTime = [weakSelf getCurrentTime];
+            NSDictionary *dict = @{@"endTimes":weakSelf.endCallTime,@"startTimes":weakSelf.startCallTime};
+            NSNotification *notifi = [NSNotification notificationWithName:@"callTime" object:nil userInfo:dict];
+            [[NSNotificationCenter defaultCenter]postNotification:notifi];
+            DebugLog(@"Call has been disconnected/电话结束 ---%@",weakSelf.endCallTime);
+        } else if (call.callState == CTCallStateConnected) {
+            weakSelf.beginTelTime = [weakSelf getCurrentTime];
+            NSDictionary *dict = @{@"endTimes":weakSelf.endCallTime,@"beginTimes":weakSelf.beginTelTime};
+            NSNotification *notifi = [NSNotification notificationWithName:@"alreadyTel" object:nil userInfo:dict];
+            [[NSNotificationCenter defaultCenter]postNotification:notifi];
+            DebugLog(@"Call has just been connected/电话已接听 ---%@",weakSelf.beginTelTime);
+        } else if(call.callState == CTCallStateIncoming) {
+            DebugLog(@"Call is incoming"); //self.viewController.signalStatus=NO;
+        } else if (call.callState ==CTCallStateDialing) {
+            weakSelf.startCallTime = [weakSelf getCurrentTime];
+            DebugLog(@"call is dialing/电话呼叫开始 ---%@",weakSelf.startCallTime);
+        } else {
+            DebugLog(@"Nothing is done");
+        }
+    };
+}
+- (NSString *)getCurrentTime{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
+    NSString *dateTime = [formatter stringFromDate:[NSDate date]];
+    
+    return dateTime;
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+    [self detectCall];
 }
 
 
@@ -41,11 +87,13 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    DebugLog(@"applicationWillEnterForeground  程序进入前台");
 }
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    DebugLog(@"applicationDidBecomeActive  程序重新激活");
 }
 
 
