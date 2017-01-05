@@ -39,7 +39,7 @@
         NSLog(@"数据库打开失败");
     }
     else{
-        NSString *createTabel = @"create table if not exists tb_record (record_id integer primary key autoincrement, tell varchar(255), time varchar(255), state varchar(255), name varchar(255),  icon varchar(255))";
+        NSString *createTabel = @"create table if not exists tb_record (record_id integer primary key autoincrement, tell varchar(255), time varchar(255), state varchar(255), name varchar(255), icon varchar(255), start_time varchar(255), end_time varchar(255))";
         if (![base executeUpdate:createTabel]) {
             NSLog(@"创建tb_record表失败");
         }
@@ -47,8 +47,8 @@
 }
 
 - (BOOL) insertRecord:(RecordModel *)model{
-    NSString *sql = @"INSERT INTO tb_record(tell, time, state, name, icon) VALUES(?, ?, ?, ?, ?)";
-    if([base executeUpdate:sql, model.tell, model.time, model.state, model.name, model.icon]) return true;
+    NSString *sql = @"INSERT INTO tb_record(tell, time, state, name, icon, start_time, end_time) VALUES(?, ?, ?, ?, ?, ?, ?)";
+    if([base executeUpdate:sql, model.tell, model.time, model.state, model.name, model.icon, model.s_time, model.e_time]) return true;
     else return false;
 }
 - (NSArray *) selecteRecord{
@@ -67,6 +67,8 @@
         model.state = [set stringForColumn:@"state"];
         model.time = [set stringForColumn:@"time"];
         model.icon = [set stringForColumn:@"icon"];
+        model.s_time = [set stringForColumn:@"start_time"];
+        model.s_time = [set stringForColumn:@"end_time"];
         [mulArr addObject:model];
     }
     return mulArr;
@@ -82,6 +84,8 @@
         model.state = [set stringForColumn:@"state"];
         model.time = [set stringForColumn:@"time"];
         model.icon = [set stringForColumn:@"icon"];
+        model.s_time = [set stringForColumn:@"start_time"];
+        model.s_time = [set stringForColumn:@"end_time"];
         [mulArr addObject:model];
     }
     return mulArr;

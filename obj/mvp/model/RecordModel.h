@@ -15,5 +15,7 @@
 @property (nonatomic) NSString  *   name;
 @property (nonatomic) NSString  *   state;
 @property (nonatomic) NSString  *   icon;
+@property (nonatomic) NSString  *   s_time;
+@property (nonatomic) NSString  *   e_time;
 
 @end
