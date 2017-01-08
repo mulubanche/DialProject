@@ -56,7 +56,7 @@
     //SELECT * FROM tb_record WHERE record_id IN(SELECT MIN(record_id) FROM tb_record GROUP BY tell
     //having count(*)>1
     //having COUNT(*)>1
-    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM tb_record WHERE record_id IN(SELECT MIN(record_id) FROM tb_record GROUP BY tell)"];
+    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM tb_record WHERE record_id IN(SELECT MAX(record_id) FROM tb_record GROUP BY tell)"];
 //    NSString *sql = [NSString stringWithFormat:@"SELECT * FROM tb_record"];
     FMResultSet *set = [base executeQuery:sql];
     NSMutableArray *mulArr = [NSMutableArray array];

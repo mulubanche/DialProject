@@ -18,5 +18,7 @@
 #define COLOR_BACK JCDRGBA(243, 246, 249, 1)
 
 #define WeakSelf __weak typeof(self) weakSelf = self;
+#define CALL_CENTER @"call_center"
+#define CALL_CATE_STATE @"call_cate_state"
 
 #endif /* macrofile_h */

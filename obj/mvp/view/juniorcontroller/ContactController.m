@@ -219,19 +219,20 @@
      ABUnknownPersonViewController
      ABAddressFormatting
      */
-    NSArray *arr = self.mulData[indexPath.section];
-    NSDictionary *dic = self.search_text.length?self.search_list[indexPath.row]:arr[indexPath.row];
-    ABUnknownPersonViewController *npvc = [ABUnknownPersonViewController new];
-    
-    npvc.hidesBottomBarWhenPushed = true;
-    CFErrorRef error =NULL;
-    ABRecordRef personRef=ABPersonCreate();
-    ABMutableMultiValueRef multi=ABMultiValueCreateMutable(kABMultiStringPropertyType);
-    ABMultiValueAddValueAndLabel(multi, (__bridge CFTypeRef)(dic[@"user_tell"]), kABPersonPhoneMobileLabel, NULL);
-    ABRecordSetValue(personRef, kABPersonPhoneProperty, multi, &error);
-    npvc.displayedPerson = personRef;
-    npvc.navigationItem.rightBarButtonItem = nil;
-    [self.navigationController pushViewController:npvc animated:true];
+//    NSArray *arr = self.mulData[indexPath.section];
+//    NSDictionary *dic = self.search_text.length?self.search_list[indexPath.row]:arr[indexPath.row];
+//    ABUnknownPersonViewController *npvc = [ABUnknownPersonViewController new];
+//    
+//    npvc.hidesBottomBarWhenPushed = true;
+//    CFErrorRef error =NULL;
+//    ABRecordRef personRef=ABPersonCreate();
+//    ABMutableMultiValueRef multi=ABMultiValueCreateMutable(kABMultiStringPropertyType);
+//    ABMultiValueAddValueAndLabel(multi, (__bridge CFTypeRef)(dic[@"user_tell"]), kABPersonPhoneMobileLabel, NULL);
+//    ABRecordSetValue(personRef, kABPersonPhoneProperty, multi, &error);
+//    npvc.displayedPerson = personRef;
+//    npvc.navigationItem.rightBarButtonItem = nil;
+//    [self.navigationController pushViewController:npvc animated:true];
+    [self callClick:indexPath];
 }
 
 - (void) callClick:(NSIndexPath *)indexPath{
@@ -240,24 +241,19 @@
         NSDictionary *dic = self.search_text.length?self.search_list[indexPath.row]:arr[indexPath.row];
         
         if (buttonIndex==0) {
-            
+            ABUnknownPersonViewController *npvc = [ABUnknownPersonViewController new];
+            npvc.hidesBottomBarWhenPushed = true;
+            CFErrorRef error =NULL;
+            ABRecordRef personRef=ABPersonCreate();
+            ABMutableMultiValueRef multi=ABMultiValueCreateMutable(kABMultiStringPropertyType);
+            ABMultiValueAddValueAndLabel(multi, (__bridge CFTypeRef)(dic[@"user_tell"]), kABPersonPhoneMobileLabel, NULL);
+            ABRecordSetValue(personRef, kABPersonPhoneProperty, multi, &error);
+            npvc.displayedPerson = personRef;
+            npvc.navigationItem.rightBarButtonItem = nil;
+            [self.navigationController pushViewController:npvc animated:true];
         }else if (buttonIndex==1){
-            [ToolFile judgeSaveTellIsShow:true block:^() {
-                self.model.tell = dic[@"user_tell"];
-                self.model.name = dic[@"user_name"];
-                self.model.time = [ToolFile getCurrentTime];
-                NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-                dic[@"callerE164"] = [KSUSERDEFAULT objectForKey:SAVE_SELF_TELL];
-                dic[@"calleeE164s"] = self.model.tell;
-                dic[@"accessE164"] = @"10081";
-                dic[@"accessE164Password"] = @"891210";
-                [Soaper connectUrl:[NSString stringWithFormat:@"%@%@", CODE_URL, COSSERVICE] Method:COSS_CALL_BACK Param:dic Success:^(NSDictionary *rawDic, NSString *rawStr) {
-                    DebugLog(@"%@", rawDic);
-                } Error:^(NSString *errMsg, NSString *rawStr) {
-                    DebugLog(@"%@", errMsg);
-                    //服务器无法为请求提供服务，因为不支持该媒体类型。
-                }];
-            }];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:CALL_CENTER object:nil userInfo:@{@"tell":dic[@"user_tell"]}];
         }
     }];
     [alert show];

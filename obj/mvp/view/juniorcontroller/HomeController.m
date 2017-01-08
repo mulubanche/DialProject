@@ -10,6 +10,8 @@
 
 #import "CarouselView.h"
 #import "CellHomeItem.h"
+#import "FDAlertView.h"
+#import "InputTellView.h"
 
 @interface HomeController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView             *top_view;
@@ -87,6 +89,21 @@
 }
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [collectionView deselectItemAtIndexPath:indexPath animated:false];
+    if (indexPath.row==7) {
+        InputTellView *contentView = [[NSBundle mainBundle] loadNibNamed:@"InputTellView" owner:nil options:nil].lastObject;
+        FDAlertView *alert = [[FDAlertView alloc] init];
+        alert.contentView = contentView;
+        [alert show];
+        contentView.width = KSCREENW-80;
+        contentView.x = 40;
+        contentView.selector = ^(BOOL ret, NSString * tell){
+            if (ret) {
+                [KSUSERDEFAULT setObject:tell forKey:SAVE_SELF_TELL];
+                [KSUSERDEFAULT synchronize];
+            }
+        };
+        return;
+    }
     [[MyShowLabel shareShowLabel] setText:@"敬请期待..." position:-1];
 }
 

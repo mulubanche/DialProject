@@ -51,7 +51,7 @@
     [self createView];
     
     [self registerEvent:[DialEvent class] onSEL:@selector(event:)];
-//    [NSNotificationCenter defaultCenter] 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationClick:) name:CALL_CENTER object:nil];
 }
 
 - (void) createView{
@@ -103,50 +103,68 @@
         self.call_number.text = self.number;
     }
 }
+- (void) notificationClick:(NSNotification *)info{
+    NSDictionary *dic = info.userInfo;
+    self.number = dic[@"tell"];
+    [self callClickData];
+}
+- (void) callClickData{
+    WeakSelf
+    [ToolFile judgeSaveTellIsShow:true block:^() {
+        self.model.tell = weakSelf.number;
+        self.model.name = @"";
+        self.model.time = [ToolFile getCurrentTime];
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        dic[@"callerE164"] = [KSUSERDEFAULT objectForKey:SAVE_SELF_TELL];
+        dic[@"calleeE164s"] = [self newtell];
+        dic[@"accessE164"] = @"10081";
+        dic[@"accessE164Password"] = @"891210";
+        //13145011306
+        [Soaper connectUrl:[NSString stringWithFormat:@"%@%@", CODE_URL, COSSERVICE] Method:COSS_CALL_BACK Param:dic Success:^(NSDictionary *rawDic, NSString *rawStr) {
+            DebugLog(@"%@", rawDic);
+            [ContactFile getAddressBook:^(NSArray *ads) {
+                for (NSDictionary *dic in ads) {
+                    if ([dic[@"user_tell"] rangeOfString:self.number].length>0) {
+                        self.model.name = dic[@"user_name"];
+                    }
+                }
+                if (!self.model.name||[self.model.name isEqualToString:@""]) self.model.name = self.number;
+                [[DBFile shareInstance] insertRecord:self.model];
+            } error:^(NSInteger num) {
+                
+            }];
+        } Error:^(NSString *errMsg, NSString *rawStr) {
+            DebugLog(@"%@", errMsg);
+            //服务器无法为请求提供服务，因为不支持该媒体类型。
+        }];
+    }];
+}
 - (IBAction)sureCallClick:(UIButton *)sender {
 
-    self.model.tell = self.number;
+    [self callClickData];
+//    self.model.tell = self.number;
 //    self.model.name = @"宠溺";
 //    self.model.name = rand()%2?@"陌路班车":@"宠溺";
-    self.model.state = [NSString stringWithFormat:@"%d", rand()%3+1];
-    self.model.time = [ToolFile getCurrentTime];
-    self.model.s_time = [ToolFile getCurrentTime];
-    self.model.b_time = [ToolFile getCurrentTime];
-    self.model.c_time = [ToolFile getCurrentTime];
-    self.model.e_time = [ToolFile getCurrentTime];
-    //18011407694
-    [ContactFile getAddressBook:^(NSArray *ads) {
-        for (NSDictionary *dic in ads) {
-            if ([dic[@"user_tell"] isEqualToString:self.number]) {
-                self.model.name = dic[@"user_name"];
-            }
-        }
-        if (!self.model.name||[self.model.name isEqualToString:@""]) self.model.name = self.number;
-        [[DBFile shareInstance] insertRecord:self.model];
-    } error:^(NSInteger num) {
-        
-    }];
+//    self.model.state = [NSString stringWithFormat:@"%d", rand()%3+1];
+//    self.model.time = [ToolFile getCurrentTime];
+//    self.model.s_time = [ToolFile getCurrentTime];
+//    self.model.b_time = [ToolFile getCurrentTime];
+//    self.model.c_time = [ToolFile getCurrentTime];
+//    self.model.e_time = [ToolFile getCurrentTime];
+//    //18011407694
+//    [ContactFile getAddressBook:^(NSArray *ads) {
+//        for (NSDictionary *dic in ads) {
+//            if ([dic[@"user_tell"] isEqualToString:self.number]) {
+//                self.model.name = dic[@"user_name"];
+//            }
+//        }
+//        if (!self.model.name||[self.model.name isEqualToString:@""]) self.model.name = self.number;
+//        [[DBFile shareInstance] insertRecord:self.model];
+//    } error:^(NSInteger num) {
+//        
+//    }];
     
 //    [[DBFile shareInstance] insertRecord:self.model];
-    
-    
-//    WeakSelf
-//    [ToolFile judgeSaveTellIsShow:true block:^() {
-//        self.model.tell = weakSelf.number;
-//        self.model.name = @"";
-//        self.model.time = [ToolFile getCurrentTime];
-//        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-//        dic[@"callerE164"] = [KSUSERDEFAULT objectForKey:SAVE_SELF_TELL];
-//        dic[@"calleeE164s"] = weakSelf.number;
-//        dic[@"accessE164"] = @"10081";
-//        dic[@"accessE164Password"] = @"891210";
-//        [Soaper connectUrl:[NSString stringWithFormat:@"%@%@", CODE_URL, COSSERVICE] Method:COSS_CALL_BACK Param:dic Success:^(NSDictionary *rawDic, NSString *rawStr) {
-//            DebugLog(@"%@", rawDic);
-//        } Error:^(NSString *errMsg, NSString *rawStr) {
-//            DebugLog(@"%@", errMsg);
-//            //服务器无法为请求提供服务，因为不支持该媒体类型。
-//        }];
-//    }];
     
     
     //直接☎️，不用弹框
@@ -238,7 +256,9 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hidetabbarcenter" object:nil userInfo:@{@"ret":[NSNumber numberWithBool:self.ret]}];
 }
 
-
+- (NSString *) newtell{
+    return [[[self.number stringByReplacingOccurrencesOfString:@"+86" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"-" withString:@""];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

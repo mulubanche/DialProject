@@ -100,7 +100,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         RecordModel *model = self.data[indexPath.row];
         [[DBFile shareInstance] deleteRecord:model.tell];
-        [tableView reloadData];
+        [self loadData];
     }
 }
 - (NSString *) tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
