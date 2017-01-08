@@ -300,7 +300,7 @@ CGFloat contentViewHeight;
         NSInteger index = [_buttonTitleArray indexOfObject:button.titleLabel.text];
         [_delegate alertView:self clickedButtonAtIndex:index];
     }else{
-        NSInteger index = [_buttonTitleArray indexOfObject:button.titleLabel.text];
+        int index = (int)[_buttonTitleArray indexOfObject:button.titleLabel.text];
         if(m_callback) m_callback(index, self);
     }
     [self hide];

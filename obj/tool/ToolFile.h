@@ -12,5 +12,5 @@
 
 #pragma mark 判断是否保存本机号码
 + (void) judgeSaveTellIsShow:(BOOL) ret block:(void(^)())block;
-
++ (NSString *)getCurrentTime;
 @end

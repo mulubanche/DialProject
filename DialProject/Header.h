@@ -16,6 +16,9 @@
 #import "UILabel+jcd.h"
 #import "NSString+jcd.h"
 #import "MyShowLabel.h"
+#import "NSObject+mt.h"
+#import "Soaper.h"
+#import "ToolFile.h"
 
 #import <PureLayout/PureLayout.h>
 #import <MJRefresh/MJRefresh.h>

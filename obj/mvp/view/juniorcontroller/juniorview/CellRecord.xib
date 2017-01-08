@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -27,7 +27,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKs-kQ-fnE">
-                        <rect key="frame" x="87" y="8" width="40" height="21"/>
+                        <rect key="frame" x="81" y="8" width="40" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="9iE-dM-2aK"/>
                         </constraints>
@@ -36,7 +36,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TYA-G2-Jzx">
-                        <rect key="frame" x="87" y="47" width="31" height="21"/>
+                        <rect key="frame" x="81" y="47" width="31" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Drr-ib-GWA"/>
                         </constraints>
@@ -78,10 +78,10 @@
                     <constraint firstItem="vDI-Xq-e9X" firstAttribute="leading" secondItem="o1u-Xi-nrx" secondAttribute="trailing" constant="2" id="iiU-Ht-yb2"/>
                     <constraint firstAttribute="trailing" secondItem="Spp-23-s44" secondAttribute="trailing" id="kT4-gj-LhF"/>
                     <constraint firstItem="o1u-Xi-nrx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="1" id="pcb-58-UgQ"/>
-                    <constraint firstItem="gKs-kQ-fnE" firstAttribute="leading" secondItem="Ukb-nf-TiD" secondAttribute="trailing" constant="14" id="u6f-PS-gTI"/>
+                    <constraint firstItem="gKs-kQ-fnE" firstAttribute="leading" secondItem="Ukb-nf-TiD" secondAttribute="trailing" constant="8" id="u6f-PS-gTI"/>
                     <constraint firstItem="Spp-23-s44" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="uka-Hp-EFJ"/>
                     <constraint firstItem="TYA-G2-Jzx" firstAttribute="top" secondItem="gKs-kQ-fnE" secondAttribute="bottom" constant="18" id="veR-Qc-CeU"/>
-                    <constraint firstItem="TYA-G2-Jzx" firstAttribute="leading" secondItem="Ukb-nf-TiD" secondAttribute="trailing" constant="14" id="zjX-V2-lQ6"/>
+                    <constraint firstItem="TYA-G2-Jzx" firstAttribute="leading" secondItem="Ukb-nf-TiD" secondAttribute="trailing" constant="8" id="zjX-V2-lQ6"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GDataXMLNode.h"
+//#import "GDataXMLNode.h"
 
 
 @interface Soaper : NSObject

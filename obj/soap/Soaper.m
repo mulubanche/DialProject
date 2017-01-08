@@ -8,6 +8,7 @@
 
 #import "Soaper.h"
 #import <UIKit/UIKit.h>
+#import "GDataXMLNode.h"
 
 static NSString* _domain = @"http://tempuri.org/";
 

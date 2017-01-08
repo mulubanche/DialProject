@@ -11,6 +11,7 @@
 
 @interface CellRecord : UITableViewCell
 
-@property (nonatomic) RecordModel *model;
+@property (nonatomic) BOOL          ret;
+@property (nonatomic) RecordModel   *model;
 
 @end

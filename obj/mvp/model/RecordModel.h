@@ -13,9 +13,11 @@
 @property (nonatomic) NSString  *   tell;
 @property (nonatomic) NSString  *   time;
 @property (nonatomic) NSString  *   name;
-@property (nonatomic) NSString  *   state;
+@property (nonatomic) NSString  *   state;//1播出，2播入，3中断
 @property (nonatomic) NSString  *   icon;
 @property (nonatomic) NSString  *   s_time;
 @property (nonatomic) NSString  *   e_time;
+@property (nonatomic) NSString  *   b_time;
+@property (nonatomic) NSString  *   c_time;
 
 @end

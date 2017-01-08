@@ -7,6 +7,7 @@
 //
 
 #import "RecordController.h"
+#import "RecordListController.h"
 
 #import "CellRecord.h"
 
@@ -23,6 +24,12 @@
 {
     __weak IBOutlet UITableView *j_tb;
 }
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+//    [j_tb.mj_header beginRefreshing];
+    [self loadData];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -37,16 +44,17 @@
     //j_tb.preservesSuperviewLayoutMargins = false;
     j_tb.tableFooterView = [[UIView alloc] init];  
     
-    WeakSelf
     [self loadData];
-    j_tb.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [weakSelf.data removeAllObjects];
-        [weakSelf loadData];
-    }];
+//    WeakSelf
+//    j_tb.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        [weakSelf.data removeAllObjects];
+//        [weakSelf loadData];
+//    }];
 
 }
 
 - (void) loadData{
+    [self.data removeAllObjects];
     NSArray *arr = [[DBFile shareInstance] selecteRecord];
     for (id item in arr) {
         [self.data addObject:item];
@@ -76,27 +84,27 @@
         cell = [tableView dequeueReusableCellWithIdentifier:cellid];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    cell.ret = true;
     cell.model = self.data[indexPath.row];
     return cell;
 }
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    
-    NSDateFormatter *matter = [NSDateFormatter new];
-    [matter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
-    
-    RecordModel *model = [RecordModel new];
-    model.name = @"陌路班车";
-    model.tell = @"18580454341";
-    model.state = [NSString stringWithFormat:@"%d", rand()%3+1];
-    model.icon = @"";
-    model.time = [matter stringFromDate:[NSDate date]];
-    if ([[DBFile shareInstance] insertRecord:model]) {
-        DebugLog(@"添加成功");
-    }else{
-        DebugLog(@"添加失败");
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:false];
+    RecordModel *model = self.data[indexPath.row];
+    RecordListController *svc = [RecordListController new];
+    svc.hidesBottomBarWhenPushed = true;
+    svc.tell = model.tell;
+    [self.navigationController pushViewController:svc animated:true];
+}
+- (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        RecordModel *model = self.data[indexPath.row];
+        [[DBFile shareInstance] deleteRecord:model.tell];
+        [tableView reloadData];
     }
-    
+}
+- (NSString *) tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
 }
 
 

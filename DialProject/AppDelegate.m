@@ -8,15 +8,9 @@
 
 #import "AppDelegate.h"
 #import "RootTabBarController.h"
-#import <CoreTelephony/CTCall.h>
-#import <CoreTelephony/CTCallCenter.h>
+#import "TellTool.h"
 
 @interface AppDelegate ()
-
-@property (nonatomic) CTCallCenter *callCenter;
-@property (nonatomic,copy)NSString *startCallTime;
-@property (nonatomic,copy)NSString *beginTelTime;
-@property (nonatomic,copy)NSString *endCallTime;
 
 @end
 
@@ -34,48 +28,9 @@
 }
 
 
--(void)detectCall {
-    
-    
-    //    NextViewController *next = [NextViewController new];
-    
-    WeakSelf;
-    
-    self.callCenter = [[CTCallCenter alloc] init];
-    self.callCenter.callEventHandler=^(CTCall* call) {
-        if (call.callState == CTCallStateDisconnected) {
-            weakSelf.endCallTime = [weakSelf getCurrentTime];
-            NSDictionary *dict = @{@"endTimes":weakSelf.endCallTime,@"startTimes":weakSelf.startCallTime};
-            NSNotification *notifi = [NSNotification notificationWithName:@"callTime" object:nil userInfo:dict];
-            [[NSNotificationCenter defaultCenter]postNotification:notifi];
-            DebugLog(@"Call has been disconnected/电话结束 ---%@",weakSelf.endCallTime);
-        } else if (call.callState == CTCallStateConnected) {
-            weakSelf.beginTelTime = [weakSelf getCurrentTime];
-            NSDictionary *dict = @{@"endTimes":weakSelf.endCallTime,@"beginTimes":weakSelf.beginTelTime};
-            NSNotification *notifi = [NSNotification notificationWithName:@"alreadyTel" object:nil userInfo:dict];
-            [[NSNotificationCenter defaultCenter]postNotification:notifi];
-            DebugLog(@"Call has just been connected/电话已接听 ---%@",weakSelf.beginTelTime);
-        } else if(call.callState == CTCallStateIncoming) {
-            DebugLog(@"Call is incoming"); //self.viewController.signalStatus=NO;
-        } else if (call.callState ==CTCallStateDialing) {
-            weakSelf.startCallTime = [weakSelf getCurrentTime];
-            DebugLog(@"call is dialing/电话呼叫开始 ---%@",weakSelf.startCallTime);
-        } else {
-            DebugLog(@"Nothing is done");
-        }
-    };
-}
-- (NSString *)getCurrentTime{
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy/MM/dd HH:mm:ss"];
-    NSString *dateTime = [formatter stringFromDate:[NSDate date]];
-    
-    return dateTime;
-}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-    [self detectCall];
+    [[TellTool shareTool] detectCall];
 }
 
 

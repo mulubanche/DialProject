@@ -21,8 +21,6 @@
 		AC4A89231E1B81DD0090D66C /* SystemAddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC4A89211E1B81DD0090D66C /* SystemAddressController.m */; };
 		AC4A89241E1B81DD0090D66C /* SystemAddressController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC4A89221E1B81DD0090D66C /* SystemAddressController.xib */; };
 		AC91F7491E15F5FB00B693B6 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AC91F7481E15F5FB00B693B6 /* libc++.tbd */; };
-		AC91F74B1E15F62300B693B6 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AC91F74A1E15F62300B693B6 /* libxml2.tbd */; };
-		AC91F7541E15F96800B693B6 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = AC91F74F1E15F96800B693B6 /* GDataXMLNode.m */; };
 		AC91F7561E15F96800B693B6 /* Soaper.m in Sources */ = {isa = PBXBuildFile; fileRef = AC91F7531E15F96800B693B6 /* Soaper.m */; };
 		AC91F7601E16007D00B693B6 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC91F75F1E16007D00B693B6 /* RootViewController.m */; };
 		AC91F7631E1600B300B693B6 /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC91F7621E1600B300B693B6 /* RootTabBarController.m */; };
@@ -89,6 +87,8 @@
 		ACE2083A1E1BB1D500A7E024 /* icon_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACE208321E1BB1D500A7E024 /* icon_setting@2x.png */; };
 		ACE2083B1E1BB1D500A7E024 /* icon_web@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ACE208331E1BB1D500A7E024 /* icon_web@2x.png */; };
 		BDF9B0EB987D75D9B47EE633 /* Pods_DialProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5076A93B90B3715CDC0C8AA8 /* Pods_DialProject.framework */; };
+		C6052B961E1FF9E900FE52E1 /* TellTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C6052B951E1FF9E900FE52E1 /* TellTool.m */; };
+		C6052B9A1E1FFD5200FE52E1 /* DialEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = C6052B991E1FFD5200FE52E1 /* DialEvent.m */; };
 		C615A9111E16BDAD00F7CCFA /* 001.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C615A90D1E16BDAD00F7CCFA /* 001.jpg */; };
 		C615A9121E16BDAD00F7CCFA /* 002.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C615A90E1E16BDAD00F7CCFA /* 002.jpg */; };
 		C615A9131E16BDAD00F7CCFA /* 003.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C615A90F1E16BDAD00F7CCFA /* 003.jpg */; };
@@ -106,6 +106,10 @@
 		C63DDBC31E180950001AC3C2 /* RecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C63DDBC21E180950001AC3C2 /* RecordModel.m */; };
 		C63DDBC71E18146D001AC3C2 /* CellRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = C63DDBC51E18146D001AC3C2 /* CellRecord.m */; };
 		C63DDBC81E18146D001AC3C2 /* CellRecord.xib in Resources */ = {isa = PBXBuildFile; fileRef = C63DDBC61E18146D001AC3C2 /* CellRecord.xib */; };
+		C6EF8F991E20051F005A247E /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C6EF8F981E20051F005A247E /* GDataXMLNode.m */; };
+		C6EF8FA01E2007F6005A247E /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AC91F74A1E15F62300B693B6 /* libxml2.tbd */; };
+		C6EF8FA41E201878005A247E /* RecordListController.m in Sources */ = {isa = PBXBuildFile; fileRef = C6EF8FA31E201878005A247E /* RecordListController.m */; };
+		C6EF8FA81E21405D005A247E /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6EF8FA71E21405D005A247E /* AddressBook.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,8 +154,6 @@
 		AC91F7471E15F55600B693B6 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
 		AC91F7481E15F5FB00B693B6 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		AC91F74A1E15F62300B693B6 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
-		AC91F74E1E15F96800B693B6 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
-		AC91F74F1E15F96800B693B6 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		AC91F7521E15F96800B693B6 /* Soaper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Soaper.h; sourceTree = "<group>"; };
 		AC91F7531E15F96800B693B6 /* Soaper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Soaper.m; sourceTree = "<group>"; };
 		AC91F75C1E15FB1C00B693B6 /* apifile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = apifile.h; sourceTree = "<group>"; };
@@ -240,6 +242,10 @@
 		ACE208311E1BB1D500A7E024 /* icon_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_search@2x.png"; sourceTree = "<group>"; };
 		ACE208321E1BB1D500A7E024 /* icon_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_setting@2x.png"; sourceTree = "<group>"; };
 		ACE208331E1BB1D500A7E024 /* icon_web@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_web@2x.png"; sourceTree = "<group>"; };
+		C6052B941E1FF9E900FE52E1 /* TellTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TellTool.h; sourceTree = "<group>"; };
+		C6052B951E1FF9E900FE52E1 /* TellTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TellTool.m; sourceTree = "<group>"; };
+		C6052B981E1FFD5200FE52E1 /* DialEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DialEvent.h; sourceTree = "<group>"; };
+		C6052B991E1FFD5200FE52E1 /* DialEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialEvent.m; sourceTree = "<group>"; };
 		C615A90D1E16BDAD00F7CCFA /* 001.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 001.jpg; sourceTree = "<group>"; };
 		C615A90E1E16BDAD00F7CCFA /* 002.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 002.jpg; sourceTree = "<group>"; };
 		C615A90F1E16BDAD00F7CCFA /* 003.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 003.jpg; sourceTree = "<group>"; };
@@ -264,6 +270,14 @@
 		C63DDBC41E18146D001AC3C2 /* CellRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellRecord.h; sourceTree = "<group>"; };
 		C63DDBC51E18146D001AC3C2 /* CellRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellRecord.m; sourceTree = "<group>"; };
 		C63DDBC61E18146D001AC3C2 /* CellRecord.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellRecord.xib; sourceTree = "<group>"; };
+		C6EF8F971E20051F005A247E /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		C6EF8F981E20051F005A247E /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
+		C6EF8F9E1E2007A7005A247E /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
+		C6EF8FA21E201878005A247E /* RecordListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordListController.h; sourceTree = "<group>"; };
+		C6EF8FA31E201878005A247E /* RecordListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordListController.m; sourceTree = "<group>"; };
+		C6EF8FA51E21351C005A247E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		C6EF8FA61E21351C005A247E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		C6EF8FA71E21405D005A247E /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,7 +285,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC91F74B1E15F62300B693B6 /* libxml2.tbd in Frameworks */,
+				C6EF8FA81E21405D005A247E /* AddressBook.framework in Frameworks */,
+				C6EF8FA01E2007F6005A247E /* libxml2.tbd in Frameworks */,
 				AC91F7491E15F5FB00B693B6 /* libc++.tbd in Frameworks */,
 				BDF9B0EB987D75D9B47EE633 /* Pods_DialProject.framework in Frameworks */,
 			);
@@ -306,6 +321,8 @@
 		6FA2D379641EBA75A9F5C609 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C6EF8FA71E21405D005A247E /* AddressBook.framework */,
+				C6EF8F9E1E2007A7005A247E /* libxml2.2.tbd */,
 				AC91F74A1E15F62300B693B6 /* libxml2.tbd */,
 				AC91F7481E15F5FB00B693B6 /* libc++.tbd */,
 				5076A93B90B3715CDC0C8AA8 /* Pods_DialProject.framework */,
@@ -343,8 +360,8 @@
 		AC91F74D1E15F96800B693B6 /* soap */ = {
 			isa = PBXGroup;
 			children = (
-				AC91F74E1E15F96800B693B6 /* GDataXMLNode.h */,
-				AC91F74F1E15F96800B693B6 /* GDataXMLNode.m */,
+				C6EF8F971E20051F005A247E /* GDataXMLNode.h */,
+				C6EF8F981E20051F005A247E /* GDataXMLNode.m */,
 				AC91F7521E15F96800B693B6 /* Soaper.h */,
 				AC91F7531E15F96800B693B6 /* Soaper.m */,
 			);
@@ -361,6 +378,7 @@
 		AC91F7581E15F9BB00B693B6 /* mvp */ = {
 			isa = PBXGroup;
 			children = (
+				C6052B971E1FFD1300FE52E1 /* event */,
 				AC91F7DF1E16041500B693B6 /* model */,
 				AC91F7E01E16041500B693B6 /* view */,
 			);
@@ -376,6 +394,8 @@
 				C63DDBBC1E180640001AC3C2 /* DBFile.m */,
 				AC4A89131E1B76120090D66C /* ContactFile.h */,
 				AC4A89141E1B76120090D66C /* ContactFile.m */,
+				C6052B941E1FF9E900FE52E1 /* TellTool.h */,
+				C6052B951E1FF9E900FE52E1 /* TellTool.m */,
 			);
 			path = tool;
 			sourceTree = "<group>";
@@ -428,6 +448,7 @@
 		AC91F7E01E16041500B693B6 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				C6EF8FA11E201860005A247E /* RecordListController */,
 				AC91F8581E1651F700B693B6 /* publicview */,
 				AC91F7E81E16048D00B693B6 /* juniorcontroller */,
 			);
@@ -616,6 +637,15 @@
 			path = home;
 			sourceTree = "<group>";
 		};
+		C6052B971E1FFD1300FE52E1 /* event */ = {
+			isa = PBXGroup;
+			children = (
+				C6052B981E1FFD5200FE52E1 /* DialEvent.h */,
+				C6052B991E1FFD5200FE52E1 /* DialEvent.m */,
+			);
+			path = event;
+			sourceTree = "<group>";
+		};
 		C615A90C1E16BDAD00F7CCFA /* ban */ = {
 			isa = PBXGroup;
 			children = (
@@ -644,6 +674,15 @@
 				ACE208281E1BAF5F00A7E024 /* CellHomeItem.xib */,
 			);
 			path = juniorview;
+			sourceTree = "<group>";
+		};
+		C6EF8FA11E201860005A247E /* RecordListController */ = {
+			isa = PBXGroup;
+			children = (
+				C6EF8FA21E201878005A247E /* RecordListController.h */,
+				C6EF8FA31E201878005A247E /* RecordListController.m */,
+			);
+			path = RecordListController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -895,10 +934,12 @@
 			files = (
 				AC91F7631E1600B300B693B6 /* RootTabBarController.m in Sources */,
 				AC91F85E1E16529C00B693B6 /* UILabel+jcd.m in Sources */,
+				C6052B961E1FF9E900FE52E1 /* TellTool.m in Sources */,
 				ACD819A11E1516BE0060379D /* AppDelegate.m in Sources */,
 				ACE208291E1BAF5F00A7E024 /* CellHomeItem.m in Sources */,
 				AC91F7F61E1604F000B693B6 /* ContactController.m in Sources */,
 				AC06746E1E1CA84900263104 /* InputTellView.m in Sources */,
+				C6052B9A1E1FFD5200FE52E1 /* DialEvent.m in Sources */,
 				ACD8199E1E1516BE0060379D /* main.m in Sources */,
 				C63DDBBA1E17F6A5001AC3C2 /* ToolFile.m in Sources */,
 				C63DDBC31E180950001AC3C2 /* RecordModel.m in Sources */,
@@ -907,10 +948,10 @@
 				AC91F85B1E16523000B693B6 /* CarouselView.m in Sources */,
 				C624B1031E1BD9EC001057FC /* MyShowLabel.m in Sources */,
 				C63DDBC71E18146D001AC3C2 /* CellRecord.m in Sources */,
+				C6EF8FA41E201878005A247E /* RecordListController.m in Sources */,
 				AC4A891C1E1B7BF90090D66C /* CellContact.m in Sources */,
 				C63DDBBD1E180640001AC3C2 /* DBFile.m in Sources */,
 				AC91F7561E15F96800B693B6 /* Soaper.m in Sources */,
-				AC91F7541E15F96800B693B6 /* GDataXMLNode.m in Sources */,
 				AC91F7EC1E1604C700B693B6 /* DialController.m in Sources */,
 				AC4A89151E1B76120090D66C /* ContactFile.m in Sources */,
 				AC4A89231E1B81DD0090D66C /* SystemAddressController.m in Sources */,
@@ -919,6 +960,7 @@
 				AC91F7E71E16045A00B693B6 /* NSObject+mt.m in Sources */,
 				AC91F8611E16531000B693B6 /* NSString+jcd.m in Sources */,
 				AC91F7F11E1604D900B693B6 /* RecordController.m in Sources */,
+				C6EF8F991E20051F005A247E /* GDataXMLNode.m in Sources */,
 				AC4A89181E1B76890090D66C /* FDAlertView.m in Sources */,
 				AC91F7E61E16045A00B693B6 /* MTEvent.m in Sources */,
 				C63DDBC01E18093A001AC3C2 /* Model.m in Sources */,
@@ -961,6 +1003,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				ACD819A61E1516BE0060379D /* Base */,
+				C6EF8FA51E21351C005A247E /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -969,6 +1012,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				ACD819AB1E1516BE0060379D /* Base */,
+				C6EF8FA61E21351C005A247E /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -980,6 +1024,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1029,6 +1074,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1086,7 +1132,28 @@
 				GCC_PREFIX_HEADER = $SRCROOT/DialProject/Header.h;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = DialProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"BMYScrollableNavigationBar\"",
+					"-framework",
+					"\"FDFullscreenPopGesture\"",
+					"-framework",
+					"\"FMDB\"",
+					"-framework",
+					"\"IQKeyboardManager\"",
+					"-framework",
+					"\"MJRefresh\"",
+					"-framework",
+					"\"PureLayout\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-lxml2",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jcd.DialProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1110,7 +1177,28 @@
 				GCC_PREFIX_HEADER = $SRCROOT/DialProject/Header.h;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = DialProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"BMYScrollableNavigationBar\"",
+					"-framework",
+					"\"FDFullscreenPopGesture\"",
+					"-framework",
+					"\"FMDB\"",
+					"-framework",
+					"\"IQKeyboardManager\"",
+					"-framework",
+					"\"MJRefresh\"",
+					"-framework",
+					"\"PureLayout\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-lxml2",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jcd.DialProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -13,7 +13,8 @@
             <connections>
                 <outlet property="ban_view" destination="Php-4l-EIJ" id="T5r-D3-o5Y"/>
                 <outlet property="call_number" destination="Qw6-wB-U39" id="ret-Ub-D5b"/>
-                <outlet property="call_view" destination="lFp-z7-YUR" id="L3U-kr-y5Q"/>
+                <outlet property="call_view" destination="lFp-z7-YUR" id="rDZ-BZ-bHb"/>
+                <outlet property="callbutton" destination="KPB-id-fYP" id="SfJ-PU-CFJ"/>
                 <outlet property="clct_view" destination="WZQ-Be-aaN" id="Qhf-FD-qRs"/>
                 <outlet property="del_num" destination="d07-JL-XWA" id="Pye-r4-laa"/>
                 <outlet property="num_view" destination="AHV-7F-hme" id="qey-Mi-6GC"/>
@@ -25,11 +26,13 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lFp-z7-YUR" userLabel="call">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lFp-z7-YUR" userLabel="call">
                     <rect key="frame" x="-1" y="618" width="377" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KPB-id-fYP">
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KPB-id-fYP">
                             <rect key="frame" x="50" y="1" width="277" height="47"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="0.16862745098039217" green="0.79607843137254897" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                             <state key="normal" image="call_icon.png">
                                 <color key="titleColor" red="0.16862745098039217" green="0.79607843137254897" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
@@ -46,13 +49,6 @@
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="bottom" secondItem="KPB-id-fYP" secondAttribute="bottom" constant="4" id="2qa-vA-227"/>
-                        <constraint firstAttribute="trailing" secondItem="KPB-id-fYP" secondAttribute="trailing" constant="50" id="BfQ-CL-bFG"/>
-                        <constraint firstItem="KPB-id-fYP" firstAttribute="leading" secondItem="lFp-z7-YUR" secondAttribute="leading" constant="50" id="EPL-sR-dku"/>
-                        <constraint firstAttribute="height" constant="50" id="Xlf-6T-eWv"/>
-                        <constraint firstItem="KPB-id-fYP" firstAttribute="top" secondItem="lFp-z7-YUR" secondAttribute="top" constant="2" id="kkB-Om-yMZ"/>
-                    </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AHV-7F-hme" userLabel="number">
                     <rect key="frame" x="0.0" y="20" width="375" height="50"/>
@@ -113,13 +109,10 @@
                 <constraint firstAttribute="trailing" secondItem="WZQ-Be-aaN" secondAttribute="trailing" id="SYb-89-eFh"/>
                 <constraint firstItem="AHV-7F-hme" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="W4x-Nu-ONV"/>
                 <constraint firstItem="WZQ-Be-aaN" firstAttribute="top" secondItem="Php-4l-EIJ" secondAttribute="bottom" id="fJP-wC-nOF"/>
-                <constraint firstAttribute="bottom" secondItem="lFp-z7-YUR" secondAttribute="bottom" constant="-1" id="igo-ep-auG"/>
                 <constraint firstItem="Php-4l-EIJ" firstAttribute="top" secondItem="AHV-7F-hme" secondAttribute="bottom" id="p5f-EP-PCQ"/>
                 <constraint firstItem="Php-4l-EIJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="tKl-Il-4mA"/>
-                <constraint firstItem="lFp-z7-YUR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="-1" id="u9f-Ri-jp0"/>
                 <constraint firstAttribute="trailing" secondItem="Php-4l-EIJ" secondAttribute="trailing" id="uSR-Ld-b9P"/>
                 <constraint firstAttribute="bottom" secondItem="WZQ-Be-aaN" secondAttribute="bottom" constant="50" id="vq8-f1-QKY"/>
-                <constraint firstAttribute="trailing" secondItem="lFp-z7-YUR" secondAttribute="trailing" constant="-1" id="z6x-em-ESu"/>
             </constraints>
             <point key="canvasLocation" x="34.5" y="53.5"/>
         </view>

@@ -10,5 +10,6 @@ target 'DialProject' do
     pod 'SDWebImage'
     pod 'FMDB'
     pod 'MJRefresh'
+#    pod 'GDataXMLNode2'
     
 end

@@ -25,7 +25,7 @@
     
     ABAddressBookRef addressBook = ABAddressBookCreate();
     //用户授权
-    WeakSelf
+//    WeakSelf
     if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined) {//首次访问通讯录
         ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
             if (!error) {
@@ -93,7 +93,7 @@
     NSMutableString *pinyin = [chinese mutableCopy];
     CFStringTransform((__bridge CFMutableStringRef)pinyin, NULL, kCFStringTransformMandarinLatin, NO);
     CFStringTransform((__bridge CFMutableStringRef)pinyin, NULL, kCFStringTransformStripCombiningMarks, NO);
-    return [pinyin uppercaseString];
+    return [[pinyin uppercaseString] stringByReplacingOccurrencesOfString:@" " withString:@""];
 }
 #pragma mark 根据首字母排序
 - (NSArray *) usersort:(NSArray *)data{

@@ -8,14 +8,17 @@
 
 #import "ContactController.h"
 #import "SystemAddressController.h"
+#import <AddressBook/AddressBook.h>
+#import <AddressBookUI/AddressBookUI.h>
 
 #import "CellContact.h"
+#import "FDAlertView.h"
 
 #import "DBFile.h"
 #import "ContactFile.h"
 #import "RecordModel.h"
 
-@interface ContactController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+@interface ContactController ()<UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, ABUnknownPersonViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *tx1;
 @property (weak, nonatomic) IBOutlet UITextField *tx2;
@@ -24,7 +27,9 @@
 @property (nonatomic) NSMutableArray             *data;
 @property (nonatomic) NSMutableArray             *mulData;
 @property (nonatomic) NSMutableArray             *indexData;
+@property (nonatomic) NSString                   *search_text;
 @property (nonatomic) NSMutableArray             *search_list;
+@property (nonatomic) RecordModel                       *model;
 @end
  
 @implementation ContactController
@@ -34,15 +39,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
     self.data = [NSMutableArray array];
     self.mulData = [NSMutableArray array];
     self.indexData = [NSMutableArray array];
+    self.search_list = [NSMutableArray array];
+    
     [self createView];
 }
 
 - (void) createView{
     self.search_view.delegate = self;
-    
+    self.search_view.showsCancelButton = true;
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(navigationb)];
     
     j_tb.delegate = self;
     j_tb.dataSource = self;
@@ -98,13 +107,32 @@
                 [self.mulData addObject:mulArr];
             }
         }
-        
-        
         [j_tb reloadData];
         [j_tb.mj_header endRefreshing];
     } error:^(NSInteger index) {
         
     }];
+}
+- (void) searchData{
+    [self.search_list removeAllObjects];
+    for (NSDictionary *dic in self.data) {
+        NSString *tell = dic[@"user_tell"];
+        NSString *name = dic[@"user_name"];
+        NSString *py = dic[@"user_py"];
+        if ([tell rangeOfString:self.search_text].length>0||[name rangeOfString:self.search_text].length>0||[py rangeOfString:self.search_text].length>0) {
+            [self.search_list addObject:dic];
+        }
+    }
+    [j_tb reloadData];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    self.search_text = searchBar.text;
+    [self searchData];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    [searchBar resignFirstResponder];
 }
 
 //- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -132,11 +160,12 @@
     return view;
 }
 // 索引目录
--(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
-{
+-(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
+    if (self.search_text.length) return 0;
     return self.indexData;
 }
 - (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if (self.search_text.length) return @"";
     if (section == self.mulData.count) {
         return @"";
     }
@@ -151,9 +180,11 @@
     return py;
 }
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
+    if (self.search_text.length) return 1;
     return self.mulData.count+1;
 }
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (self.search_text.length) return self.search_list.count;
     if (section!=self.mulData.count) {
         NSArray *arr = self.mulData[section];
         return arr.count;
@@ -162,11 +193,12 @@
     }
 }
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (self.search_text.length) return 0.0;
     return 25.0;
 }
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSArray *arr = self.mulData[indexPath.section];
-    NSDictionary *dic = arr[indexPath.row];
+    NSDictionary *dic = self.search_text.length?self.search_list[indexPath.row]:arr[indexPath.row];
     
     static NSString *cellid = @"contactid";
     CellContact *cell = [tableView dequeueReusableCellWithIdentifier:cellid];
@@ -180,9 +212,60 @@
 }
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:false];
-//    SystemAddressController *svc = [SystemAddressController new];
-//    [self.navigationController pushViewController:svc animated:true];
+    /*
+     ABPeoplePickerNavigationController
+     ABPersonViewController
+     ABNewPersonViewController
+     ABUnknownPersonViewController
+     ABAddressFormatting
+     */
+    NSArray *arr = self.mulData[indexPath.section];
+    NSDictionary *dic = self.search_text.length?self.search_list[indexPath.row]:arr[indexPath.row];
+    ABUnknownPersonViewController *npvc = [ABUnknownPersonViewController new];
     
+    npvc.hidesBottomBarWhenPushed = true;
+    CFErrorRef error =NULL;
+    ABRecordRef personRef=ABPersonCreate();
+    ABMutableMultiValueRef multi=ABMultiValueCreateMutable(kABMultiStringPropertyType);
+    ABMultiValueAddValueAndLabel(multi, (__bridge CFTypeRef)(dic[@"user_tell"]), kABPersonPhoneMobileLabel, NULL);
+    ABRecordSetValue(personRef, kABPersonPhoneProperty, multi, &error);
+    npvc.displayedPerson = personRef;
+    npvc.navigationItem.rightBarButtonItem = nil;
+    [self.navigationController pushViewController:npvc animated:true];
+}
+
+- (void) callClick:(NSIndexPath *)indexPath{
+    FDAlertView *alert = [[FDAlertView alloc] initWithTitle:nil icon:nil message:@"请选择功能" buttonTitles:@[@"查看",@"拨打"] callback:^(int buttonIndex, FDAlertView *alert) {
+        NSArray *arr = self.mulData[indexPath.section];
+        NSDictionary *dic = self.search_text.length?self.search_list[indexPath.row]:arr[indexPath.row];
+        
+        if (buttonIndex==0) {
+            
+        }else if (buttonIndex==1){
+            [ToolFile judgeSaveTellIsShow:true block:^() {
+                self.model.tell = dic[@"user_tell"];
+                self.model.name = dic[@"user_name"];
+                self.model.time = [ToolFile getCurrentTime];
+                NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+                dic[@"callerE164"] = [KSUSERDEFAULT objectForKey:SAVE_SELF_TELL];
+                dic[@"calleeE164s"] = self.model.tell;
+                dic[@"accessE164"] = @"10081";
+                dic[@"accessE164Password"] = @"891210";
+                [Soaper connectUrl:[NSString stringWithFormat:@"%@%@", CODE_URL, COSSERVICE] Method:COSS_CALL_BACK Param:dic Success:^(NSDictionary *rawDic, NSString *rawStr) {
+                    DebugLog(@"%@", rawDic);
+                } Error:^(NSString *errMsg, NSString *rawStr) {
+                    DebugLog(@"%@", errMsg);
+                    //服务器无法为请求提供服务，因为不支持该媒体类型。
+                }];
+            }];
+        }
+    }];
+    [alert show];
+}
+
+
+- (void)unknownPersonViewController:(ABUnknownPersonViewController *)unknownCardViewController didResolveToPerson:(nullable ABRecordRef)person{
+    DebugLog(@"unknownPersonViewController");
 }
 
 - (IBAction)add:(id)sender {
