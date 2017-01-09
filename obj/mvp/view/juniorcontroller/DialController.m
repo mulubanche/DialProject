@@ -13,6 +13,7 @@
 
 #import "DialEvent.h"
 #import "DBFile.h"
+#import "Hinter.h"
 #import "ContactFile.h"
 #import "RecordModel.h"
 
@@ -105,30 +106,31 @@
 }
 - (void) notificationClick:(NSNotification *)info{
     NSDictionary *dic = info.userInfo;
-    self.number = dic[@"tell"];
+    self.model.tell = dic[@"tell"];
     [self callClickData];
 }
 - (void) callClickData{
-    WeakSelf
     [ToolFile judgeSaveTellIsShow:true block:^() {
-        self.model.tell = weakSelf.number;
+        //self.model.tell = weakSelf.number;
         self.model.name = @"";
         self.model.time = [ToolFile getCurrentTime];
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
         dic[@"callerE164"] = [KSUSERDEFAULT objectForKey:SAVE_SELF_TELL];
-        dic[@"calleeE164s"] = [self newtell];
+        dic[@"calleeE164s"] = [self newtell:self.model.tell];
         dic[@"accessE164"] = @"10081";
         dic[@"accessE164Password"] = @"891210";
         //13145011306
+        [Hinter title:@"" msg:@"呼叫中..." indicator:true hideAfter:0 view:self.view];
         [Soaper connectUrl:[NSString stringWithFormat:@"%@%@", CODE_URL, COSSERVICE] Method:COSS_CALL_BACK Param:dic Success:^(NSDictionary *rawDic, NSString *rawStr) {
             DebugLog(@"%@", rawDic);
+            [Hinter hide];
             [ContactFile getAddressBook:^(NSArray *ads) {
                 for (NSDictionary *dic in ads) {
-                    if ([dic[@"user_tell"] rangeOfString:self.number].length>0) {
+                    if ([[self newtell:dic[@"user_tell"]] rangeOfString:self.model.tell].length>0) {
                         self.model.name = dic[@"user_name"];
                     }
                 }
-                if (!self.model.name||[self.model.name isEqualToString:@""]) self.model.name = self.number;
+                if (!self.model.name||[self.model.name isEqualToString:@""]) self.model.name = self.model.tell;
                 [[DBFile shareInstance] insertRecord:self.model];
             } error:^(NSInteger num) {
                 
@@ -136,11 +138,12 @@
         } Error:^(NSString *errMsg, NSString *rawStr) {
             DebugLog(@"%@", errMsg);
             //服务器无法为请求提供服务，因为不支持该媒体类型。
+            [Hinter title:@"" msg:errMsg indicator:false hideAfter:1 view:self.view];
         }];
     }];
 }
 - (IBAction)sureCallClick:(UIButton *)sender {
-
+    self.model.tell = self.number;
     [self callClickData];
 //    self.model.tell = self.number;
 //    self.model.name = @"宠溺";
@@ -256,8 +259,8 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"hidetabbarcenter" object:nil userInfo:@{@"ret":[NSNumber numberWithBool:self.ret]}];
 }
 
-- (NSString *) newtell{
-    return [[[self.number stringByReplacingOccurrencesOfString:@"+86" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"-" withString:@""];
+- (NSString *) newtell:(NSString *)tell{
+    return [[[tell stringByReplacingOccurrencesOfString:@"+86" withString:@""] stringByReplacingOccurrencesOfString:@" " withString:@""] stringByReplacingOccurrencesOfString:@"-" withString:@""];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -252,7 +252,6 @@
             npvc.navigationItem.rightBarButtonItem = nil;
             [self.navigationController pushViewController:npvc animated:true];
         }else if (buttonIndex==1){
-            
             [[NSNotificationCenter defaultCenter] postNotificationName:CALL_CENTER object:nil userInfo:@{@"tell":dic[@"user_tell"]}];
         }
     }];

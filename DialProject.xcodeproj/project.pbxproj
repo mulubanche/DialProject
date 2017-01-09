@@ -69,6 +69,7 @@
 		AC91F85B1E16523000B693B6 /* CarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC91F85A1E16523000B693B6 /* CarouselView.m */; };
 		AC91F85E1E16529C00B693B6 /* UILabel+jcd.m in Sources */ = {isa = PBXBuildFile; fileRef = AC91F85D1E16529C00B693B6 /* UILabel+jcd.m */; };
 		AC91F8611E16531000B693B6 /* NSString+jcd.m in Sources */ = {isa = PBXBuildFile; fileRef = AC91F8601E16531000B693B6 /* NSString+jcd.m */; };
+		ACA943AC1E2389D400F99160 /* Hinter.m in Sources */ = {isa = PBXBuildFile; fileRef = ACA943AB1E2389D400F99160 /* Hinter.m */; };
 		ACD8199E1E1516BE0060379D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD8199D1E1516BE0060379D /* main.m */; };
 		ACD819A11E1516BE0060379D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ACD819A01E1516BE0060379D /* AppDelegate.m */; };
 		ACD819A71E1516BE0060379D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACD819A51E1516BE0060379D /* Main.storyboard */; };
@@ -217,6 +218,8 @@
 		AC91F85D1E16529C00B693B6 /* UILabel+jcd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+jcd.m"; sourceTree = "<group>"; };
 		AC91F85F1E16531000B693B6 /* NSString+jcd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+jcd.h"; sourceTree = "<group>"; };
 		AC91F8601E16531000B693B6 /* NSString+jcd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+jcd.m"; sourceTree = "<group>"; };
+		ACA943AA1E2389D400F99160 /* Hinter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hinter.h; sourceTree = "<group>"; };
+		ACA943AB1E2389D400F99160 /* Hinter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hinter.m; sourceTree = "<group>"; };
 		ACD819991E1516BE0060379D /* DialProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DialProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACD8199D1E1516BE0060379D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		ACD8199F1E1516BE0060379D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -388,6 +391,8 @@
 		AC91F7591E15F9BB00B693B6 /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				ACA943AA1E2389D400F99160 /* Hinter.h */,
+				ACA943AB1E2389D400F99160 /* Hinter.m */,
 				C63DDBB81E17F6A5001AC3C2 /* ToolFile.h */,
 				C63DDBB91E17F6A5001AC3C2 /* ToolFile.m */,
 				C63DDBBB1E180640001AC3C2 /* DBFile.h */,
@@ -907,7 +912,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E40BEBAFFA85EED9A3D3FAB6 /* [CP] Copy Pods Resources */ = {
@@ -933,6 +938,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC91F7631E1600B300B693B6 /* RootTabBarController.m in Sources */,
+				ACA943AC1E2389D400F99160 /* Hinter.m in Sources */,
 				AC91F85E1E16529C00B693B6 /* UILabel+jcd.m in Sources */,
 				C6052B961E1FF9E900FE52E1 /* TellTool.m in Sources */,
 				ACD819A11E1516BE0060379D /* AppDelegate.m in Sources */,
