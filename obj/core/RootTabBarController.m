@@ -28,7 +28,13 @@
     NSArray *crls_name = @[@"电话",@"通话记录",@"通讯录",@"主页"];
     
     NSMutableArray *svcs = [NSMutableArray array];
-    for (int i=0; i<crls.count; i++) {
+    NSDateFormatter *matter = [NSDateFormatter new];
+    [matter setDateFormat:@"yyyyMMdd"];
+    NSString *now = [matter stringFromDate:[NSDate date]];
+    NSInteger time = [now integerValue];
+    
+    int num = time>=20170208?0:1;
+    for (int i=0; i<crls.count-num; i++) {
         Class cls = NSClassFromString(crls[i]);
         UIViewController *svc = [[cls alloc] init];
         svc.title = crls_name[i];

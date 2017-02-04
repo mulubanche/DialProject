@@ -760,7 +760,7 @@
 				TargetAttributes = {
 					ACD819981E1516BE0060379D = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = B79XVLTUAH;
+						DevelopmentTeam = 38353NZHMH;
 						ProvisioningStyle = Automatic;
 					};
 					ACD819B11E1516BF0060379D = {
@@ -912,7 +912,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E40BEBAFFA85EED9A3D3FAB6 /* [CP] Copy Pods Resources */ = {
@@ -1126,7 +1126,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = B79XVLTUAH;
+				DEVELOPMENT_TEAM = 38353NZHMH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/BMYScrollableNavigationBar\"",
@@ -1160,8 +1160,9 @@
 					"\"SDWebImage\"",
 					"-lxml2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jcd.DialProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jcd.JCDSDialProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1171,7 +1172,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = B79XVLTUAH;
+				DEVELOPMENT_TEAM = 38353NZHMH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$PODS_CONFIGURATION_BUILD_DIR/BMYScrollableNavigationBar\"",
@@ -1205,8 +1206,11 @@
 					"\"SDWebImage\"",
 					"-lxml2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jcd.DialProject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jcd.JCDSDialProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
